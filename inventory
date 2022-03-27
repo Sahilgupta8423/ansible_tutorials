@@ -1,2 +1,5 @@
-[myservers]
+[web_servers]
 172.31.37.65
+
+[db_servers]
+172.31.39.131
