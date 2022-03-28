@@ -3,6 +3,7 @@
   become: true
   tasks:
   - name: install updates (Ubuntu)
+    tags: always
     apt:
       upgrade: dist
       update_cache: yes
@@ -12,6 +13,7 @@
   become: true
   tasks:
   - name: install apache and php packages for Ubuntu servers
+    tags: apache, apache2, ubuntu
     apt:
       name:
         - apache2
@@ -24,6 +26,7 @@
   become: true
   tasks: 
   - name: install mariadb package (Ubuntu)
+    tags: db,mariadb, ubuntu
     apt: 
       name: mariadb-server
       state: latest
