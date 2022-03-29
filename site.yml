@@ -11,57 +11,17 @@
 
 - hosts: all
   become: true
-  tasks:
-  - name: create sahil_gupta user
-    tags: always
-    user:
-      name: sahil_gupta
-      group: root    
-  - name: add ssh key for sahil_gupta
-    tags: always
-    authorized_key:
-      user: sahil_gupta
-      key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDAyctjXgn5hDmM3n+jrTyuYumnudE0cBd/a4ePYuXJsJm+0RLdosIhpbyHGmNoAarhxKHAOjlOEUaMuGrGbDMskui1HtWmbXV5Tgw7nJOnJGVSehDNYlhopsFaMQMsdWkf8lH2g3dh1L1/NpUEjWo71P8VEb+1PQT8+cr+48+vVQgBO6toVDTAhabEyLCWun/R+nadtqiHJc+uUZ8JLMu+z0kos64DcynjGahHRyzVy3OmRButEIR97YU7ATj/QGhJr3p04HNLmarghWgmezcTkAQCS2cXWKwrtMIvtWPBaKCDkVB/hLYUeUJxg/f+Rg6omMBc8ZM1P6FWWf+DX+Ox ansible-key"
-
-  - name: add sudoers file for sahil_gupta
-    tags: always
-    copy:
-      src: sudoer_sahil_gupta
-      dest: /etc/sudoers.d/sahil_gupta
-      owner: root
-      group: root
-      mode: 0440
+  roles:
+    - base    
 
 - hosts: web_servers
   become: true
-  tasks:
-  - name: install apache and php packages for Ubuntu servers
-    tags: apache, apache2, ubuntu
-    apt:
-      name:
-        - apache2
-        - libapache2-mod-php
-      state: latest
-      update_cache: yes
-    when: ansible_distribution == "Ubuntu"
-
-  - name: copy default html file for site
-    tags: apache, apache2, httpd
-    copy: 
-      src: files/default_site.html
-      dest: /var/www/html/index.html
-      owner: root
-      group: root
-      mode: 0644
+  roles: 
+    - web_servers
 
 - hosts: db_servers
   become: true
-  tasks: 
-  - name: install mariadb package (Ubuntu)
-    tags: db,mariadb, ubuntu
-    apt: 
-      name: mariadb-server
-      state: latest
-    when: ansible_distribution == "Ubuntu"  
+  roles: 
+    - db_servers  
 
-    
+  

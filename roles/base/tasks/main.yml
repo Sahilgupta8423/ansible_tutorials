@@ -1,0 +1,5 @@
+- name: add ssh key for sahil_gupta
+  tags: always
+  authorized_key:
+    user: sahil_gupta
+    key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDAyctjXgn5hDmM3n+jrTyuYumnudE0cBd/a4ePYuXJsJm+0RLdosIhpbyHGmNoAarhxKHAOjlOEUaMuGrGbDMskui1HtWmbXV5Tgw7nJOnJGVSehDNYlhopsFaMQMsdWkf8lH2g3dh1L1/NpUEjWo71P8VEb+1PQT8+cr+48+vVQgBO6toVDTAhabEyLCWun/R+nadtqiHJc+uUZ8JLMu+z0kos64DcynjGahHRyzVy3OmRButEIR97YU7ATj/QGhJr3p04HNLmarghWgmezcTkAQCS2cXWKwrtMIvtWPBaKCDkVB/hLYUeUJxg/f+Rg6omMBc8ZM1P6FWWf+DX+Ox ansible-key"
